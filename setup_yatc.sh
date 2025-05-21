@@ -4,9 +4,10 @@ PRETRAINED_MODEL_NAME=./output_dir/pretrained-model.pth
 FINE_TUNING_DATASET_ZIP_NAME=data.zip
 FINE_TUNING_DATASET_DIR=YaTC_datasets
 
+sudo apt-get install git unzip -y
+
 pip install pip -U
 pip install gdown timm==0.3.2 torch==1.8.1 numpy==1.19.5 scikit-learn==0.24.2 tensorboard scikit-image matplotlib || exit
-
 
 if [ ! -d YaTC ]; then
   git clone https://github.com/NSSL-SJTU/YaTC.git || exit

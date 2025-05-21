@@ -157,3 +157,5 @@ ntc-enigma
 ET-BERT
 YaTC/
 pretrained_model.bin
+YaTC_datasets
+YaTC_datasets.zip
