@@ -4,8 +4,10 @@ PRETRAINED_MODEL_NAME=pretrained_model.bin
 FINE_TUNING_DATASET_ZIP_NAME=cstnet-tls1.3_packet.zip
 FINE_TUNING_DATASET_DIR_NAME=cstnet-tls1.3_packet
 
-pip install uv
-uv sync
+sudo apt-get install git unzip -y
+
+pip install pip -U
+pip install six "gdown>=5.2.0" "numpy<2.0" "torch>=2.7.0" "tqdm>=4.67.1"
 
 if [ ! -f $PRETRAINED_MODEL_NAME ]; then
   gdown https://drive.google.com/uc?id=1r1yE34dU2W8zSqx1FkB8gCWri4DQWVtE -O $PRETRAINED_MODEL_NAME  || exit
@@ -19,12 +21,8 @@ if [ ! -d $FINE_TUNING_DATASET_DIR_NAME ]; then
   unzip $FINE_TUNING_DATASET_ZIP_NAME -d $FINE_TUNING_DATASET_DIR_NAME || exit
 fi
 
-if [ ! -d ntc-enigma ]; then
-  git clone https://github.com/nime-sha256/ntc-enigma.git || exit
-fi
-
 if [ ! -d ET-BERT ]; then
-git clone https://github.com/linwhitehat/ET-BERT.git || exit
+  git clone https://github.com/linwhitehat/ET-BERT.git || exit
 fi
 
 cd ET-BERT || exit
