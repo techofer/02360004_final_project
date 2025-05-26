@@ -29,20 +29,40 @@ def create_datasets(args):
     bert_path = args.dataset_name + "_BERT"
     bert_ctd_path = args.dataset_name + "_BERT_CTD"
 
-    print(f"Creating clean YATC dataset at {yatc_path}")
-    create_yatc_dataset(args.src_path, yatc_path)
 
-    print(f"Creating clean BERT dataset at {bert_path}")
-    create_bert_dataset(args.src_path, bert_path)
+    if not os.path.exists(yatc_path):
+        print(f"Creating clean YATC dataset at {yatc_path}")
+        create_yatc_dataset(args.src_path, yatc_path)
+    else:
+        print(f"Clean YATC dataset already exists at {yatc_path}")
 
-    print(f"Creating raw CTD dataset at {ctd_path}")
-    create_ctd_dataset(args.src_path, ctd_path)
+    if not os.path.exists(bert_path):
+        print(f"Creating clean BERT dataset at {bert_path}")
+        create_bert_dataset(args.src_path, bert_path)
+    else:
+        print(f"Clean BERT dataset already exists at {bert_path}")
 
-    print(f"Creating CTD YATC dataset at {yatc_ctd_path}")
-    create_yatc_dataset(ctd_path, yatc_ctd_path)
+    
+    if not os.path.exists(ctd_path):
+        print(f"Creating raw CTD dataset at {ctd_path}")
+        create_ctd_dataset(args.src_path, ctd_path)
+    else:
+        print(f"Raw CTD dataset already exists at {ctd_path}")
+    
+    if os.path.exists(ctd_path):
+        if not os.path.exists(yatc_ctd_path):
+            print(f"Creating CTD YATC dataset at {yatc_ctd_path}")
+            create_yatc_dataset(ctd_path, yatc_ctd_path)
+        else:
+            print(f"CTD YATC dataset already exists at {yatc_ctd_path}")
 
-    print(f"Creating CTD BERT dataset at {bert_ctd_path}")
-    create_bert_dataset(ctd_path, bert_ctd_path)
+        
+        if not os.path.exists(bert_ctd_path):
+            print(f"Creating CTD BERT dataset at {bert_ctd_path}")
+            create_bert_dataset(ctd_path, bert_ctd_path)
+
+        else:
+            print(f"CTD BERT dataset already exists at {bert_ctd_path}")
     
 
 if __name__ == "__main__":
