@@ -9,9 +9,11 @@ import tqdm
 def yatc_split(base_path, split_ratio=0.8, random_seed=42):
     # Configuration
     base_dir = Path(base_path)
-    mix_dir = base_dir / "mix"
     train_dir = base_dir / "train"
     test_dir = base_dir / "test"
+
+    # mix dir is the other dir - child of base that isn't train or test
+    mix_dir = [x for x in base_dir.iterdir() if x.name not in ["train", "test"]][0]
 
     # Ensure reproducibility
     random.seed(random_seed)
