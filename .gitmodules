@@ -1,0 +1,9 @@
+[submodule "ET-BERT"]
+	path = ET-BERT
+	url = git@github.com:techofer/ET-BERT.git
+[submodule "YaTC"]
+	path = YaTC
+	url = https://github.com/obl1/YaTC.git
+[submodule "ntc-enigma"]
+	path = ntc-enigma
+	url = git@github.com:techofer/ntc-enigma.git
